@@ -30,8 +30,8 @@ This is a full-stack web application that implements some pages of Leadsync AI a
 
 1. **Clone the Repository**:
 
-       git clone https://github.com/tahmidhamim/oauth2.0-login.git
-       cd oauth2.0-login
+       git clone https://github.com/tahmidhamim/leadsync-assessment.git
+       cd leadsync-assessment
 
 2. **Install Backend Dependencies**:
 
