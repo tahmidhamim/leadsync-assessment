@@ -12,7 +12,7 @@ This is a full-stack web application that implements some pages of Leadsync AI a
 * **Axios**: For making HTTP requests to the backend.
 * **Tailwind CSS**: CSS framework for styling.
 * **Shadcn**: Component library for customizable and reusable UI components.
-* **Lucide**: Icon library consistent icons.
+* **Lucide**: Icon library for consistent icons.
 
 ### Backend
 
