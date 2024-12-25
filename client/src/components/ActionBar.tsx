@@ -1,8 +1,13 @@
+import React from 'react';
 import { Search, ChevronDown, Plus } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function ActionBar() {
+interface ActionBarProps {
+  handleCreateCampaign: () => void;
+}
+
+const ActionBar: React.FC<ActionBarProps> = ({ handleCreateCampaign }) => {
   return (
     <div className="flex items-center justify-between mb-6">
       <div className="flex items-center gap-4">
@@ -19,7 +24,7 @@ export default function ActionBar() {
           <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </div>
-      <Button className="bg-indigo-600 rounded-full">
+      <Button className="bg-indigo-600 rounded-full" onClick={handleCreateCampaign}>
         <Plus size={48} strokeWidth={3}/>
         Create Campaign
       </Button>
@@ -27,3 +32,4 @@ export default function ActionBar() {
   )
 }
 
+export default ActionBar;

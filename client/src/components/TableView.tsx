@@ -8,8 +8,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Campaign } from '@/api/types/campaign';
 
-export default function TableView() {
+interface TableViewProps {
+  campaigns: Campaign[];
+}
+
+const TableView: React.FC<TableViewProps> = ({ campaigns }) => {
+  const formatTimestamp = (timestamp: string): string => {
+    const date = new Date(timestamp);
+    return new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(date);
+  };
+
   return (
     <ScrollArea className="rounded-lg">
       <div className="min-w-[800px]">
@@ -20,35 +30,35 @@ export default function TableView() {
           <div className="ml-10">INVITE SENT</div>
           <div>CONNECTION</div>
         </div>
-        {Array.from({ length: 7 }).map((_, i) => (
+        {campaigns.map((campaign: Campaign, index: number) => (
           <div
-            key={i}
+            key={index}
             className="grid grid-cols-5 gap-4 border rounded-xl mt-4 px-6 py-4 hover:bg-muted/50"
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 w-80">
               <div className="w-8 h-8 rounded-full bg-blue-100 rounded flex items-center justify-center">
                 <ChartLine className="h-4 w-4 text-blue-500" />
               </div>
               <div>
-                <div className="font-medium">Growth Connection</div>
-                <div className="text-sm text-muted-foreground">Create in August 2014</div>
+                <div className="font-medium">{campaign.name}</div>
+                <div className="text-sm text-muted-foreground">Create in {formatTimestamp(campaign.timestamp)}</div>
               </div>
             </div>
             <div className="flex items-center ml-32">
-              <Badge variant="secondary">Draft</Badge>
+              <Badge variant="secondary">{campaign.status}</Badge>
             </div>
             <div className="flex items-center ml-20">
               <User size={18} className="mr-2 ml-2" />
-              50
+              {campaign.totalLead}
             </div>
             <div className="flex items-center ml-10">
               <Mail size={18} className="mr-2 ml-2" />
-              50
+              {campaign.inviteSent}
             </div>
             <div className="flex items-center justify-between">
               <span className="flex items-center">
                 <Check size={18} className="mr-2 ml-2" />
-                50
+                {campaign.connection}
               </span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild className="rounded-full bg-indigo-100">
@@ -79,3 +89,4 @@ export default function TableView() {
   )
 }
 
+export default TableView;
